@@ -1,3 +1,4 @@
+#MEMO
 # activar entorno virtual en powershell .\venv\Scripts\activate.ps1 
 
 # dos formas de ejcutar fastapi
