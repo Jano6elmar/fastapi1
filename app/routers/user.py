@@ -1,6 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from app.schemas import User, UserId
-
+from app.db.database import get_db
+from sqlalchemy.orm import Session 
+from app.db import models
 router = APIRouter(
     prefix="/user",
     tags=["Users"]
@@ -13,7 +15,9 @@ def ruta1():
     return {"mensaje": "Bienvenido a tu primera api"}
 
 @router.get('/')
-def obtener_usuario():
+def obtener_usuario(db:Session = Depends(get_db)):
+    data = db.query(models.User).all
+    print(data)
     return usuarios
 
 @router.post('/')
